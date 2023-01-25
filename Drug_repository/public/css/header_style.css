@@ -1,0 +1,14 @@
+.navbar .navbar-nav .nav-link:hover {
+    background-color: #F9F9F9;
+    color: #37779C;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: #fff;
+}
+
+#Mynav{
+    background-image: url('../../public/image/Head_Web.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
