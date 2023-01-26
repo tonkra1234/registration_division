@@ -1,21 +1,22 @@
 <?php
 
-@include '../include/database/connection.php';
+require_once './db.php';
+require_once './util.php';
 
 if(isset($_POST['submit'])){
+   $utli = new Util();
 
-   $name = mysqli_real_escape_string($conn, $_POST['name']);
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
+   $name = $utli->testInput($_POST['name']);
+   $email = $utli->testInput($_POST['email']);
    $pass = md5($_POST['password']);
    $cpass = md5($_POST['cpassword']);
    $user_type = $_POST['user_type'];
    $gender = $_POST['gender'];
 
-   $select = " SELECT * FROM users WHERE email = '$email' && password = '$pass' ";
+   $db = new Database();
+   $result = $db->check_users($email,$pass);
 
-   $result = mysqli_query($conn, $select);
-
-   if(mysqli_num_rows($result) > 0){
+   if($result > 0){
 
       $error[] = 'user already exist!';
 
@@ -24,11 +25,8 @@ if(isset($_POST['submit'])){
       if($pass != $cpass){
          $error[] = 'password not matched!';
       }else{
-         $insert = "INSERT INTO users(name, email, password, user_type, gender) VALUES('$name','$email','$pass','$user_type','$gender')";
-         $insert_user = "INSERT INTO status_user(username ,email, user_type ,status_u) VALUES('$name','$email','$user_type','')";
-         mysqli_query($conn, $insert);
-         mysqli_query($conn, $insert_user);
-         header('location:./admin_page.php');
+         $db->register($name,$email,$pass,$user_type,$gender);
+         header('Location:./login_form.php');
       }
    }
 
@@ -53,7 +51,7 @@ if(isset($_POST['submit'])){
    </script>
    <style>
       body {
-         background-image: url('../public/image/login_back.jpg');
+         background-image: url('./image/login_back.jpg');
          background-repeat: no-repeat;
          background-attachment: fixed;
          background-size: cover;
@@ -69,7 +67,7 @@ if(isset($_POST['submit'])){
             <?php
                if(isset($error)){
                   foreach($error as $error){
-                     echo '<span class="error-msg">'.$error.'</span>';
+                     echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';
                   };
                };
             ?>
