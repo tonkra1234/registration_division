@@ -87,7 +87,7 @@ $offset = ($page_no-1) * $total_records_per_page;
                 </td>
                 <td><a href="./detail.php?Certificate_Number=<?php echo $row["Certificate_Number"]; ?>&typeofcer=valid"
                         class="btn btn-info">More</a></td>
-                <td><a href="../PDF/htmlToPdf.php?id=<?php echo $row["Number"]; ?>" class="btn btn-primary">Click</a>
+                <td><a href="../PDF/htmlToPdf.php?id=<?php echo $row["Number"]; ?>" class="btn btn-primary" target="_blank">Click</a>
                 </td>
             </tr>
 

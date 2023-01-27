@@ -13,8 +13,9 @@ $html2pdf->addFont('bookantiquebold', 'B', '../../vendor/tecnickcom/tcpdf/fonts/
 ob_start();
 include './data.php';
 $html_code = ob_get_clean();
+$html2pdf->pdf->SetTitle($data['Certificate_Number']);
 $html2pdf->writeHTML($html_code);
-$html2pdf->output();
+$html2pdf->output($data['Certificate_Number'].'.pdf');
 
 
 ?>
