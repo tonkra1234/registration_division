@@ -65,10 +65,10 @@
                         <div class="col-2">
                             <?php if (($result['image_link']) != null) :?>
                                 <img src="./upload_image/<?php echo $result['image_link'];?>" class="img-thumbnail" alt="preview image">
-                                <input type="hidden" id="old_image" name="old_image" value="<?php echo $result['image_link'];?>">
                             <?php else : ?>
                                 <img src="./upload_image/question_mark.png" class="img-thumbnail" alt="preview image">
                             <?php endif; ?>
+                            <input type="hidden" id="old_image" name="old_image" value="<?php echo $result['image_link'];?>">
                         </div>
                         <div class="col-10 align-self-center">
                             <input class="form-control" type="file" id="new_image" name="new_image"

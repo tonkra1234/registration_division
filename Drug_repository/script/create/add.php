@@ -14,6 +14,23 @@ if (isset($_POST['submit']))
 
 ?>
 <div class="container my-5">
+<div class="d-flex mt-4">
+        <a href="../../../main.php" class="link-secondary">
+            Main menu
+        </a>
+        <div class="mx-1">
+            /
+        </div>
+        <a href="../home/home.php" class="link-secondary">
+        Drug repository
+        </a>
+        <div class="mx-1">
+            /
+        </div>
+        <p class="text-dark fw-bold">
+            Add page
+        </p>
+    </div>
     <div class="card shadow">
         <div class="card-header" style="background-color:#27AE60 ;">
             <h2 class="text-center text-white">Add new drug into inventory</h2>

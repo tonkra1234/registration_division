@@ -23,6 +23,23 @@ $offset = ($page_no-1) * $total_records_per_page;
 ?>
 
 <div class="container my-5" style="min-height: 90vh;">
+<div class="d-flex mt-4">
+        <a href="../../../main.php" class="link-secondary">
+            Main menu
+        </a>
+        <div class="mx-1">
+            /
+        </div>
+        <a href="../home/home.php" class="link-secondary">
+        Drug repository
+        </a>
+        <div class="mx-1">
+            /
+        </div>
+        <p class="text-dark fw-bold">
+            Valid drugs
+        </p>
+    </div>
     <div class="rounded p-3 mb-5" style="background-color:#27AE60  ;">
         <div class="d-flex align-items-center justify-content-center ms-3">
             <span class="text-light fs-2 fw-bold">Total of valid drugs</span>

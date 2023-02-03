@@ -38,12 +38,12 @@ $Dzongkhag = $util->testInput($_POST['Dzongkhag']);
 $Location = $util->testInput($_POST['Location']);
 $Old_image = $_POST['old_image'];
 
-if(is_file('./upload_image/'.$Old_image)){
+if(is_file('./upload_image/'.$Old_image) || $Old_image === null){
     if ($_FILES['new_image']['size'] !== 0) {
 
         $targetDir = "upload_image/";
 
-        $fileName = basename($_FILES['new_image']["name"]);
+        $fileName = basename($Old_image);
         $targetFilePath = $targetDir . $fileName;
         $deleteTargetPath = $targetDir . $Old_image;
         try {
@@ -55,21 +55,18 @@ if(is_file('./upload_image/'.$Old_image)){
 
         $util->compressImage($_FILES['new_image']['tmp_name'],$targetFilePath,60);
     }
-    if ($_FILES['new_image']["name"] === '') {
-        $image_link = $Old_image;
-    }else{
-        $image_link = $_FILES['new_image']["name"];
-    }
+    $image_link = $Old_image;
+    
 
 }else{
     // File upload path
     $targetDir = "upload_image/";
 
-    $fileName = basename($_FILES['new_image']["name"]);
+    $fileName = basename($Name_Manufacturer.'.jpg');
     $targetFilePath = $targetDir . $fileName;
 
     $util->compressImage($_FILES['new_image']['tmp_name'],$targetFilePath,60);
-    $image_link = $Old_image;
+    $image_link = $fileName;
 }
 
 

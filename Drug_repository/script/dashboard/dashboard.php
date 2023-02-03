@@ -7,8 +7,23 @@ require './dashboard_back.php';
 <link rel="stylesheet" href="../../public/css/dashboard.css">
 
 <div class="container my-5">
-    <a class="btn btn-warning mb-5 fw-bold" href="../home/home.php"> <i class="fa fa-arrow-left" aria-hidden="true"></i>
-        Back to list of drugs</a>
+    <div class="d-flex my-4">
+        <a href="../../../main.php" class="link-secondary">
+            Main menu
+        </a>
+        <div class="mx-1">
+            /
+        </div>
+        <a href="../home/home.php" class="link-secondary">
+            Drug repository
+        </a>
+        <div class="mx-1">
+            /
+        </div>
+        <p class="text-dark fw-bold">
+            Dashboard
+        </p>
+    </div>
     <h3 class="shadow rounded-3 bg-success text-white p-3 text-center mb-5">Dashboard</h3>
     <div class="row">
         <div class="col-9">

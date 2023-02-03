@@ -40,11 +40,14 @@ $_SESSION['user_name'] = $user_name;
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Sweetalert -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- ChartJS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js">
+    </script>
 
     <link rel="stylesheet" href="../../public/css/header_style.css">
 
@@ -74,10 +77,14 @@ $_SESSION['user_name'] = $user_name;
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex flex-column px-3 rounded-3 bg-gradient" style="background-color: transparent; width:40vw;">
-                        <span class="fs-5 fst-italic text-center" style="color:#37779C ;"><span class="fs-5 fst-italic fw-bold" style="color:#37779C ;">" </span>The most dynamic, reliable and client-centric model</span>
+                    <div class="d-flex flex-column px-3 rounded-3 bg-gradient"
+                        style="background-color: transparent; width:40vw;">
+                        <span class="fs-5 fst-italic text-center" style="color:#37779C ;"><span
+                                class="fs-5 fst-italic fw-bold" style="color:#37779C ;">" </span>The most dynamic,
+                            reliable and client-centric model</span>
                         <span class="fs-5 fst-italic text-end me-5" style="color:#37779C ;">
-                            regulatory organization<span class="fs-5 fst-italic fw-bold" style="color:#37779C ;"> "</span></span>
+                            regulatory organization<span class="fs-5 fst-italic fw-bold" style="color:#37779C ;">
+                                "</span></span>
                     </div>
                 </div>
 
@@ -90,6 +97,12 @@ $_SESSION['user_name'] = $user_name;
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <div class="row align-items-end me-1 mt-1 d-block d-sm-none">
+                <div class="col-12 text-end">
+                    <a class="btn btn-light" href="../Login/logout.php"><i
+                            class="fa-solid fa-right-from-bracket fs-5 me-2"></i>Sign out</a>
+                </div>
+            </div>
 
             <div class="container-fluid ">
                 <div class=" collapse navbar-collapse" id="navbarNavDropdown">
@@ -103,7 +116,8 @@ $_SESSION['user_name'] = $user_name;
                                 management</a>
                         </li>
                         <li class="nav-item mx-1">
-                            <a class="nav-link rounded-3" href="../dashboard/dashboard.php" style="font-size: 1.1rem ;">Dashboard</a>
+                            <a class="nav-link rounded-3" href="../dashboard/dashboard.php"
+                                style="font-size: 1.1rem ;">Dashboard</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link mx-2 dropdown-toggle rounded-3" style="font-size: 1.1rem ;" href="#"
@@ -116,16 +130,13 @@ $_SESSION['user_name'] = $user_name;
                                 <li><a class="dropdown-item" href="../list_of_drug/expire.php">Expire</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item mx-1">
-                            <a class="nav-link rounded-3" href="../../../registration_assessment/Script/home.php"
-                                style="font-size: 1.1rem ;">Report assessment</a>
-                        </li>
                     </ul>
-                    <div class="d-flex ms-auto me-5">
+                    <div class="d-flex ms-lg-auto me-lg-5 d-none d-sm-block">
                         <div class="dropdown text-end">
                             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle"
                                 id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../../public/image/icons8-male-user-100.png" alt="users" height="40" width="40">
+                                <img src="../../public/image/icons8-male-user-100.png" alt="users" height="40"
+                                    width="40">
                             </a>
                             <ul class="dropdown-menu text-small dropdown-menu-end" aria-labelledby="dropdownUser1">
                                 <li>

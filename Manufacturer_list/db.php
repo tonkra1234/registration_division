@@ -15,7 +15,7 @@ class DataBase extends Config {
     }
 
     public function insert($Name_Manufacturer, $Proprietor,$Key_person, $Category, $Email, $Dzongkhag, $Location, $image_link) {
-        $sql = "INSERT INTO manufacturer_list (Name_Manufacturer,Proprietor,Key_person,Category,Location,Email,Dzongkhag,image_link) 
+        $sql = "INSERT INTO pre_approval (Name_Manufacturer,Proprietor,Key_person,Category,Location,Email,Dzongkhag,image_link) 
         VALUES(:Name_Manufacturer,:Proprietor,:Key_person,:Category,:Location,:Email,:Dzongkhag,:image_link)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
@@ -44,6 +44,24 @@ class DataBase extends Config {
             'Email' => $Email,
             'Dzongkhag' => $Dzongkhag,
             'image_link' => $image_link
+        ]);
+        return true;
+    }
+
+    public function delete_manufacturer($id) {
+        $sql = "DELETE FROM manufacturer_list WHERE id=:id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'id' => $id,
+        ]);
+        return true;
+    }
+
+    public function move_manufacturer($id) {
+        $sql = "INSERT INTO trash SELECT * FROM manufacturer_list WHERE id=:id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'id' => $id,
         ]);
         return true;
     }

@@ -26,6 +26,17 @@ require '../../include/header.php';
 ?>
 
 <div class="container my-5" style="min-height: 90vh;">
+    <div class="d-flex mt-4">
+        <a href="../../../main.php" class="link-secondary">
+            Main menu
+        </a>
+        <div class="mx-1">
+            /
+        </div>
+        <p class="text-dark fw-bold">
+            Drug repository
+        </p>
+    </div>
     <div class="rounded p-3 mb-5" style="background-color:#2980B9 ;">
         <div class="d-flex align-items-center justify-content-center ms-3">
             <span class="text-light fs-2 fw-bold">Total of registration drugs</span>

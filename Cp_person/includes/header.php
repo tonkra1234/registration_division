@@ -31,13 +31,18 @@ $_SESSION['user_name'] = $user_name;
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Sweetalert -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- ChartJS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
 
     <style>
         #Mynav {
@@ -55,8 +60,8 @@ $_SESSION['user_name'] = $user_name;
         <div class="container">
             <div class="d-flex align-items-center">
                 <div class="d-flex">
-                    <a class="navbar-brand" href="./home.php"><img src="./image/logo.png" height="100"
-                            alt="DRA logo" loading="lazy" />
+                    <a class="navbar-brand" href="./home.php"><img src="./image/logo.png" height="100" alt="DRA logo"
+                            loading="lazy" />
                     </a>
                     <div class="d-flex align-items-center">
                         <div class="d-flex flex-column justify-content-start">
@@ -80,34 +85,40 @@ $_SESSION['user_name'] = $user_name;
         </div>
     </nav>
     <nav class="navbar navbar-expand-lg navbar-light p-1 shadow " style="background-color: #37779C;">
+        <a class="navbar-brand text-white ms-2" href="#">Competent person</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="container-fluid ">
-                <div class=" collapse navbar-collapse" id="navbarNavDropdown">
-                    <a href="../main.php" class="btn btn-light rounded-pill"><i class="fa-solid fa-backward"></i> Back to menu</a>
-                    <div class="d-flex ms-auto me-5">
-                        <div class="dropdown text-end">
-                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle"
-                                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="./image/login.png" alt="users" height="40" width="40">
-                            </a>
-                            <ul class="dropdown-menu text-small dropdown-menu-end" aria-labelledby="dropdownUser1">
-                                <li>
-                                    <h6 class="dropdown-header">User: <?php echo $user_name;?></h6>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="../Login/logout.php"><i
-                                            class="fa-solid fa-right-from-bracket fs-5 me-2"></i>Sign out</a></li>
-                            </ul>
-                        </div>
+        <div class="container-fluid ">
+            <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+                <div class="d-flex ms-lg-auto me-lg-5 d-none d-sm-block">
+                    <div class="dropdown text-end">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="./image/login.png" alt="users" height="40" width="40">
+                        </a>
+                        <ul class="dropdown-menu text-small dropdown-menu-end" aria-labelledby="dropdownUser1">
+                            <li>
+                                <h6 class="dropdown-header">User: <?php echo $user_name;?></h6>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="../Login/logout.php"><i
+                                        class="fa-solid fa-right-from-bracket fs-5 me-2"></i>Sign out</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row align-items-end me-1 mt-1 d-block d-sm-none">
+                    <div class="col-12 text-end">
+                        <a class="btn btn-light" href="../Login/logout.php"><i
+                                class="fa-solid fa-right-from-bracket fs-5 me-2"></i>Sign out</a>
                     </div>
                 </div>
             </div>
-        </nav>
+        </div>
+    </nav>
+    <div class="container" style="min-height: 70vh;">

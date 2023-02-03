@@ -107,7 +107,7 @@ class DataBase extends Config {
     $Dzongkhag, $Application_Number, $BMHC_Certificate_No, $Qualification, $Nationality, $Date_of_receipt_of_application, $Date_of_registration,
     $st_expiray_date, $Application_date, $Renewal_date, $Application_date_second, $Renewal_date_second, $Certificate_Validity_Date, $Application_date_pharmacy,
     $Issuance_date_pharmacy, $Remarks, $Status_show) {
-        $sql = "INSERT INTO cp_repository (Application_Number,Date_of_receipt_of_application,
+        $sql = "INSERT INTO pre_approval (Application_Number,Date_of_receipt_of_application,
         Date_of_registration,st_expiray_date,CP_Registration_No,Name ,CID_No,BMHC_Certificate_No,
         Qualification,CP_category,Gender,Nationality,Contact_No,email_address,Firm_Name,
         Firm_Location,Dzongkhag,CP_type,Application_date,Renewal_date,Application_date_second,Renewal_date_second,
@@ -147,6 +147,24 @@ class DataBase extends Config {
             'Issuance_date_pharmacy' => $Issuance_date_pharmacy,
             'Remarks' => $Remarks,
             'Status_show' => $Status_show,
+        ]);
+        return true;
+    }
+
+    public function delete_competent_person($id) {
+        $sql = "DELETE FROM cp_repository WHERE id=:id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'id' => $id,
+        ]);
+        return true;
+    }
+
+    public function move_competent_person($id) {
+        $sql = "INSERT INTO trash SELECT * FROM cp_repository WHERE id=:id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'id' => $id,
         ]);
         return true;
     }

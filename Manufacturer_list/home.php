@@ -7,6 +7,18 @@ $db = new Database();
 $results = $db->read();
 
 ?>
+<div class="d-flex mt-4">
+    <a href="../main.php" class="link-secondary">
+        Main menu
+    </a>
+    <div class="mx-1">
+        /
+    </div>
+    <p class="text-dark fw-bold">
+        Manufacturer
+    </p>
+
+</div>
 <!-- Modal -->
 <div class="modal fade" id="addNewManufacturerModal" tabindex="-1" aria-labelledby="addNewManufacturerModal"
     aria-hidden="true">
@@ -93,7 +105,10 @@ $results = $db->read();
             </div>
             <div>
                 <button class="btn btn-success" type="button" data-bs-toggle="modal"
-                    data-bs-target="#addNewManufacturerModal">Add new manufacturer</button>
+                    data-bs-target="#addNewManufacturerModal">
+                    <div class="d-flex align-items-center justify-content-center"><i class="fa-solid fa-plus"></i>
+                        <div class="ms-2 d-none d-sm-block">Add new Manufacturer</div>
+                </button>
             </div>
         </div>
     </div>
@@ -101,12 +116,12 @@ $results = $db->read();
     <div class="row">
         <?php foreach($results as $result){?>
 
-        <div class="col-md-4 col-12 my-2">
+        <div class="col-md-4 col-12 my-2" id="refresh-delete<?php echo $result['id'];?>">
             <div class="card shadow" style="min-height: 50rem;">
                 <?php if(is_file('./upload_image/'.$result["image_link"])): ?>
                     <img src="./upload_image/<?php echo $result['image_link']?>" class="img-fluid rounded-start p-5"
                     alt="logo">
-                <?php elseif(true) : ?>
+                <?php else: ?>
                     <img src="./upload_image/question_mark.png" class="img-fluid rounded-start p-5" alt="question_mark">
                 <?php endif; ?>
                 <div class="card-body d-flex align-items-center">
@@ -142,15 +157,19 @@ $results = $db->read();
                         ?>
                     </div>
                 </div>
-                <div class="card-footer d-flex">
-                    <button type="button" class="btn btn-warning w-50 mx-1" data-bs-toggle="modal"
+                <div class="card-footer d-flex w-100">
+                    <button type="button" class="btn btn-warning mx-1 w-100" data-bs-toggle="modal"
                         data-bs-target="#editModal<?php echo $result['id'];?>">
                         <i class="fa-solid fa-pen-to-square"></i> Edit
                     </button>
-                    <a class="btn btn-success w-50 mx-1" data-bs-toggle="collapse" href="#collapse<?php echo $result['id'];?>" role="button"
+                    <a class="btn btn-success mx-1 w-100" data-bs-toggle="collapse" href="#collapse<?php echo $result['id'];?>" role="button"
                         aria-expanded="false" aria-controls="collapse<?php echo $result['id'];?>">
-                        <i class="fa-solid fa-eye"></i> More detail
+                        <i class="fa-solid fa-eye"></i> Details
                     </a>
+                    <button type="button" class="delete_button btn btn-danger mx-1 w-100" value="<?php echo $result['id']?>">
+                        <i class="fa-solid fa-trash"></i>
+                        Delete
+                    </button>
                 </div>
             </div>
         </div>
@@ -187,6 +206,43 @@ $results = $db->read();
                 }, false)
             })
     })()
+</script>
+<script>
+    $('.delete_button').click(function (e) {
+        e.preventDefault();
+        var manufacturerId = $(this).val();
+        var fileName = $('.delete_file_name'+manufacturerId).val();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#BD9802',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "./delete_controller.php",
+                    data: {
+                        'manufacturerdelete': "delete",
+                        'manufacturerId': manufacturerId,
+                        'fileName': fileName,
+                    },
+                    success: function (reponse) {
+                        $('#refresh-delete' + manufacturerId).hide(1000);
+                    }
+                });
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been delete.',
+                    'success'
+                )
+            }
+        })
+
+    });
 </script>
 
 
