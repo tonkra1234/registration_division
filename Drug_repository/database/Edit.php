@@ -12,7 +12,7 @@ Expiry_Date='$Expiry_Date', Price_per_unit='$Price_per_unit' WHERE Certificate_N
 
 if ($conn->query($sql) === TRUE) {
     echo "<script>
-    swal(
+    Swal.fire(
         'Update successfully!',
         'Please, click button to continue!',
         'success'

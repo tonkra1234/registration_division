@@ -4,6 +4,7 @@ require '../../include/connection.php';
 require '../../include/header.php';
 
 $Certificate_Number = (isset($_GET['Certificate_Number']))?$_GET['Certificate_Number']:'';
+$typeofcer= (isset($_GET['typeofcer']))?$_GET['typeofcer']:'';
 
 $sql = "SELECT * FROM drug_record WHERE Certificate_Number='$Certificate_Number'";
 $result = mysqli_query ($conn, $sql);
@@ -20,7 +21,7 @@ if (isset($_POST['submit']))
 ?>
 
 <div class="container my-5">
-    <div class="d-flex mt-4">
+    <div class="d-flex mt-lg-4 mb-lg-3">
         <a href="../../../main.php" class="link-secondary">
             Main menu
         </a>
@@ -33,8 +34,26 @@ if (isset($_POST['submit']))
         <div class="mx-1">
             /
         </div>
+        <?php if($typeofcer==='valid'):?>
+            <a href="../list_of_drug/valid.php" class="link-secondary">
+            Valid
+        </a>
+        <?php elseif($typeofcer==='expire'):?>
+            <a href="../list_of_drug/expire.php" class="link-secondary">
+            Expiry
+        </a>
+        <?php endif ?>
+        <div class="mx-1">
+            /
+        </div>
+        <a href="../list_of_drug/detail.php?Certificate_Number=<?php echo $data["Certificate_Number"]; ?>&typeofcer=<?php echo $typeofcer; ?>" class="link-secondary">
+            Detail
+        </a>
+        <div class="mx-1">
+            /
+        </div>
         <p class="text-dark fw-bold">
-            Edit page
+            <?php echo $Certificate_Number;?>
         </p>
     </div>
     <div class="card shadow">

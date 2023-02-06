@@ -30,19 +30,9 @@ class Drug extends ConfigDrug {
         return $results;
     }
 
-    public function count_inspectors(){
+    public function fetch_drug_trash(){
 
-        $sql= "SELECT count(*) as number_inspectors FROM `inspector` ";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-        $results =  $stmt->fetch();
-
-        return $results;
-    }
-
-    public function inspectors(){
-
-        $sql= "SELECT * FROM `inspector` ";
+        $sql= "SELECT * FROM `trash` ";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $results =  $stmt->fetchAll();
@@ -50,40 +40,102 @@ class Drug extends ConfigDrug {
         return $results;
     }
 
-    public function insert_inspectors($name,$division,$Avatar){
+    public function count_drug_trash(){
 
-        $sql= "INSERT INTO inspector(name,Division,picture) VALUES(:name,:division,:picture) ";
+        $sql= "SELECT count(*) as number_drug_trash FROM `trash` ";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([
-            'name'=>$name,
-            'division' =>$division,
-            'picture' => $Avatar
-        ]);
+        $stmt->execute();
+        $results =  $stmt->fetch();
 
-        return true;
+        return $results;
     }
 
-    public function edit_inspectors($id,$Inspector_name,$Division,$Avatar) {
-        $sql = "UPDATE inspector SET name=:Inspector_name, Division=:Division, picture=:Avatar WHERE id=:id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([
-            'id' => $id,
-            'Inspector_name' => $Inspector_name,
-            'Division' => $Division,
-            'Avatar' => $Avatar,
-        ]);
-        return true;
-    }
-
-    public function delete_inspectors($id) {
-        $sql = "DELETE FROM inspector WHERE id=:id";
+    public function delete_drug($id) {
+        $sql = "DELETE FROM trash WHERE Number=:id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             'id' => $id,
         ]);
         return true;
     }
-    
+
+    public function retrieve_drug($id) {
+        $sql = "INSERT INTO drug_record SELECT * FROM trash WHERE Number=:id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'id' => $id,
+        ]);
+        return true;
+    }
+
+    public function count_drug_approval(){
+
+        $sql= "SELECT count(*) as number_drug_approval FROM `pre_approval` ";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $results =  $stmt->fetch();
+
+        return $results;
+    }
+
+    public function fetch_drug_approval(){
+
+        $sql= "SELECT * FROM `pre_approval` ";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $results =  $stmt->fetchAll();
+
+        return $results;
+    }
+
+    public function reject_drug($id) {
+        $sql = "DELETE FROM `pre_approval` WHERE Number=:id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'id' => $id,
+        ]);
+        return true;
+    }
+
+    public function approval_drug($Essential,$Registration_Type, $Application_Type,$Market_Authorisation_Holder, 
+    $Category_of_Medical_Product,$Intention,$Generic_Name,$Brand_Name, $Dosage_Form,$Pack_Size,
+    $Type_of_Packaging, $Composition, $Manufacturer, $Marketer,$Country_of_Manufacturer, 
+    $Therapeutic_Category,$Certificate_Number,$Issue_Date,$Expiry_Date,$Price_per_unit) {
+        $sql = "INSERT INTO drug_record(Essential, Schedule, Registration_Type, Application_Type, 
+        Market_Authorisation_Holder, Category_of_Medical_Product, Intention, Generic_Name, Brand_Name, 
+        Dosage_Form, Pack_Size,Type_of_Packaging,Composition, Manufacturer, Marketer, Country_of_Manufacturer, 
+        Therapeutic_Category, Certificate_Number, Issue_Date, Expiry_Date, Price_per_unit) 
+        VALUES(:Essential, ' ', :Registration_Type, :Application_Type,:Market_Authorisation_Holder, 
+        :Category_of_Medical_Product,:Intention,:Generic_Name,:Brand_Name, :Dosage_Form,:Pack_Size,
+        :Type_of_Packaging, :Composition, :Manufacturer, :Marketer,:Country_of_Manufacturer, 
+        :Therapeutic_Category,:Certificate_Number,:Issue_Date,:Expiry_Date,:Price_per_unit)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'Essential' => $Essential,
+            'Registration_Type' => $Registration_Type,
+            'Application_Type' => $Application_Type,
+            'Market_Authorisation_Holder' => $Market_Authorisation_Holder,
+            'Category_of_Medical_Product' => $Category_of_Medical_Product,
+            'Intention' => $Intention,
+            'Generic_Name' => $Generic_Name,
+            'Brand_Name' => $Brand_Name,
+            'Dosage_Form' => $Dosage_Form,
+            'Pack_Size' => $Pack_Size,
+            'Type_of_Packaging' => $Type_of_Packaging,
+            'Composition' => $Composition,
+            'Manufacturer' => $Manufacturer,
+            'Marketer' => $Marketer,
+            'Country_of_Manufacturer' => $Country_of_Manufacturer,
+            'Therapeutic_Category' => $Therapeutic_Category,
+            'Certificate_Number' => $Certificate_Number,
+            'Issue_Date' => $Issue_Date,
+            'Expiry_Date' => $Expiry_Date,
+            'Price_per_unit' => $Price_per_unit,
+        ]);
+
+        return true;
+    }
+     
 }
 
 ?>

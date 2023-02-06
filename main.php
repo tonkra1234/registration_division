@@ -2,6 +2,10 @@
 require_once './main_class.php';
 $session = new Session();
 $user_name = $session->user();
+
+if(!isset($_SESSION['user_name'])){
+    header('location:./Login/login_form.php');
+}
 ?>
 
 <!DOCTYPE html>

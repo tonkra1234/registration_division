@@ -23,7 +23,7 @@ $offset = ($page_no-1) * $total_records_per_page;
 ?>
 
 <div class="container my-5" style="min-height: 90vh;">
-<div class="d-flex mt-4">
+    <div class="d-flex mt-4">
         <a href="../../../main.php" class="link-secondary">
             Main menu
         </a>
@@ -31,7 +31,7 @@ $offset = ($page_no-1) * $total_records_per_page;
             /
         </div>
         <a href="../home/home.php" class="link-secondary">
-        Drug repository
+            Drug repository
         </a>
         <div class="mx-1">
             /
@@ -48,7 +48,8 @@ $offset = ($page_no-1) * $total_records_per_page;
     <div class="card">
         <div class="card-body">
             <form class="d-flex" method="GET" action="">
-                <input class="border w-100" type="search" name="search" placeholder="Search" aria-label="Search" required value="<?php echo $search_key; ?>">
+                <input class="border w-100" type="search" name="search" placeholder="Search" aria-label="Search"
+                    required value="<?php echo $search_key; ?>">
                 <button class="btn btn-primary px-5 ms-1" type="submit">Search </button>
                 <a class="btn btn-danger px-5 ms-1" role="button" href="./valid.php?search=">Clear</a>
             </form>
@@ -73,7 +74,7 @@ $offset = ($page_no-1) * $total_records_per_page;
         </thead>
         <tbody>
 
-        <?php
+            <?php
         if(empty($search_key)){
             $result_count = mysqli_query($conn,"SELECT COUNT(*) As total_records FROM `drug_record` WHERE Expiry_Date <= '$today'");
             $total_records = mysqli_fetch_array($result_count);
@@ -104,7 +105,8 @@ $offset = ($page_no-1) * $total_records_per_page;
                 </td>
                 <td><a href="./detail.php?Certificate_Number=<?php echo $row["Certificate_Number"]; ?>&typeofcer=valid"
                         class="btn btn-info">More</a></td>
-                <td><a href="../PDF/htmlToPdf.php?id=<?php echo $row["Number"]; ?>" class="btn btn-primary" target="_blank">Click</a>
+                <td><a href="../PDF/htmlToPdf.php?id=<?php echo $row["Number"]; ?>" class="btn btn-primary"
+                        target="_blank">Click</a>
                 </td>
             </tr>
 
@@ -139,7 +141,7 @@ $offset = ($page_no-1) * $total_records_per_page;
                 echo date_format($Expiry_date,"Y-M-d");
                 ?>
                 </td>
-                <td><a href="./detail.php?Certificate_Number=<?php echo $row["Certificate_Number"]; ?>"
+                <td><a href="./detail.php?Certificate_Number=<?php echo $row["Certificate_Number"]; ?>&typeofcer=valid"
                         class="btn btn-info">More</a></td>
                 <td><a href="../PDF/htmlToPdf.php?id=<?php echo $row["Number"]; ?>" class="btn btn-primary">Click</a>
                 </td>
@@ -150,9 +152,9 @@ $offset = ($page_no-1) * $total_records_per_page;
             }
             }else {
             ?>
-                <tr>
-                    <td colspan="10" class="p-5 text-center fw-bold fs-3">No Record Found</td>
-                </tr>
+            <tr>
+                <td colspan="10" class="p-5 text-center fw-bold fs-3">No Record Found</td>
+            </tr>
             <?php
             }
         }

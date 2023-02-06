@@ -20,6 +20,7 @@ if(isset($_POST['submit'])){
       if($result['user_type'] == 'admin'){
 
           $_SESSION['user_name'] = $result['name'];
+          $_SESSION['email'] = $result['email'];
           header('location:./Admin/admin_page.php');
 
       }elseif($result['user_type'] == 'user'){

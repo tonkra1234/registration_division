@@ -4,31 +4,51 @@ require '../../include/connection.php';
 require '../../include/header.php';
 
 $Certificate_Number= (isset($_GET['Certificate_Number']))?$_GET['Certificate_Number']:'';
-$typeofcer= (isset($_GET['typeofcer']))?$_GET['typeofcer']:'';
+$typeofcer = (isset($_GET['typeofcer']))?$_GET['typeofcer']:'';
 
 $sql = "SELECT * FROM drug_record WHERE Certificate_Number='$Certificate_Number'";
 $result = mysqli_query ($conn, $sql);
 $data = $result->fetch_assoc();
 ?>
 <style>
-    th{
+    th {
         border-right: 1px solid;
     }
 </style>
-<div class="ms-5 mt-5">
-    <?php if($typeofcer === 'valid') :?>
-        <a class="btn btn-warning fw-bold" href="../list_of_drug/valid.php"> <i class="fa fa-arrow-left" aria-hidden="true"></i>  Back to previous page</a>
-    <?php elseif($typeofcer === 'expire') :?>
-        <a class="btn btn-warning fw-bold" href="../list_of_drug/expire.php"> <i class="fa fa-arrow-left" aria-hidden="true"></i>  Back to previous page</a>
-    <?php elseif($typeofcer === 'edit_back') :?>
-        <a class="btn btn-warning fw-bold" href="../home/home.php"> <i class="fa fa-arrow-left" aria-hidden="true"></i>  Back to home page</a>
-    <?php endif?>
+<div class="d-flex ms-lg-5 mt-lg-5">
+    <a href="../../../main.php" class="link-secondary">
+        Main menu
+    </a>
+    <div class="mx-1">
+        /
+    </div>
+    <a href="../home/home.php" class="link-secondary">
+        Drug repository
+    </a>
+    <div class="mx-1">
+        /
+    </div>
+    <?php if($typeofcer==='valid'):?>
+    <a href="./valid.php" class="link-secondary">
+        Valid
+    </a>
+    <?php elseif($typeofcer==='expire'):?>
+    <a href="./expire.php" class="link-secondary">
+        Expiry
+    </a>
+    <?php endif ?>
+    <div class="mx-1">
+        /
+    </div>
+    <p class="text-dark fw-bold">
+        details of <?php echo $data['Certificate_Number']?>
+    </p>
 </div>
 
-<div class="card text-center m-5">
+<div class="card text-center mx-lg-5 my-lg-5 mt-lg-3">
 
     <div class="card-header" style="background-color:#31968B ;">
-        <span class="fs-4 fw-bold text-white" >Drug details</span>
+        <span class="fs-4 fw-bold text-white">Drug details</span>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -118,17 +138,56 @@ $data = $result->fetch_assoc();
     <div class="card-footer text-muted">
         <div class="row">
             <div class="col-md-6 col-12 d-grid gap-2 ">
-                <a href="../Edit/edit.php?Certificate_Number=<?php echo $data["Certificate_Number"]; ?>"><button class="btn btn-warning w-100"><i class="fa fa-eye"></i> Edit</button></a>
+                <a
+                    href="../Edit/edit.php?Certificate_Number=<?php echo $data["Certificate_Number"]; ?>&typeofcer=<?php echo $typeofcer;?>"><button
+                        class="btn btn-warning w-100"><i class="fa fa-eye"></i> Edit</button></a>
             </div>
             <div class="col-md-6 col-12 d-grid gap-2 ">
-                <a href="#"><button class="btn btn-danger w-100 "><i class="fa-solid fa-x"></i> Delete</button></a>               
+                <button type="button" class="delete_button btn btn-danger w-100 " value="<?php echo $data["Number"]; ?>"><i class="fa-solid fa-x"></i> Delete</button>
             </div>
         </div>
     </div>
-    
+
 </div>
 
+<script>
+    $('.delete_button').click(function (e) {
+        e.preventDefault();
+        var drugId = $(this).val();
+        
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#BD9802',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "../../database/Delete.php",
+                    data: {
+                        'drugdelete': "delete",
+                        'drugId': drugId,
+                    },
+                    success: function (reponse) {
 
+                    }
+                });
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been delete.',
+                    'success'
+                ).then(function(){
+                    window.location ="../home/home.php";
+                });
+            }
+        })
+
+    });
+</script>
 
 <?php
 require '../../include/footer.php';
