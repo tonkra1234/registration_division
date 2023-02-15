@@ -9,7 +9,7 @@ $_SESSION['email'] = $email;
 
 
 if(!isset($_SESSION['user_name'])){
-   header('location:login_form.php');
+   header('location:../login_form.php');
 }
 
 ?>

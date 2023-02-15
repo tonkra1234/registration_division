@@ -70,7 +70,7 @@
 
     });
 </script>
-<script>
+<!-- <script>
     $('.approval_button').click(function (e) {
         e.preventDefault();
         var cpId = $(this).val();
@@ -198,4 +198,4 @@
         })
 
     });
-</script>
+</script> -->

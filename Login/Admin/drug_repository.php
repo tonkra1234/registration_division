@@ -3,9 +3,9 @@
 require './database/db_drug_repository.php';
 $db_drug = new Drug();
 $count_drug_trash = $db_drug->count_drug_trash();
-$results_drug_trash = $db_drug->fetch_drug_trash();
-$count_drug_approval = $db_drug->count_drug_approval();
-$results_drug_approval = $db_drug->fetch_drug_approval();
+// $results_drug_trash = $db_drug->fetch_drug_trash();
+// $count_drug_approval = $db_drug->count_drug_approval();
+// $results_drug_approval = $db_drug->fetch_drug_approval();
 
 ?>
 
@@ -40,9 +40,14 @@ $results_drug_approval = $db_drug->fetch_drug_approval();
                     </thead>
                     <tbody>
                         <?php
-                     $number = 1;
+                        $outcome = ($db_drug->fetch_drug_trash()[0]);
+
+                        $page_no = ($db_drug->fetch_drug_trash()[1]);
+                        $total_no_of_pages = ($db_drug->fetch_drug_trash()[2]);
+                        $total_records = ($db_drug->fetch_drug_trash()[3]);
+                        $number = 1;
                      if($count_drug_trash['number_drug_trash'] > 0){
-                        foreach ($results_drug_trash as $result) {
+                        foreach ($outcome as $result) {
                      
                     ?>
                         <tr id="refresh-delete<?php echo $result['Number']?>">
@@ -62,9 +67,9 @@ $results_drug_approval = $db_drug->fetch_drug_approval();
                                     <button type="button"
                                         class="retrieve_button btn btn-success btn-sm rounded-pill d-grid py-1 my-1"
                                         value="<?php echo $result['Number']?>">Retrieve</button>
-                                    <button type="button"
+                                    <!-- <button type="button"
                                         class="delete_button btn btn-danger btn-sm rounded-pill d-grid py-1 my-1"
-                                        value="<?php echo $result['Number']?>">Delete</button>
+                                        value="<?php echo $result['Number']?>">Delete</button> -->
                                 </div>
                             </td>
                         </tr>
@@ -87,7 +92,12 @@ $results_drug_approval = $db_drug->fetch_drug_approval();
                     </tbody>
                 </table>
             </div>
-            <div class="row">
+            <?php 
+            if($count_drug_trash['number_drug_trash'] > 0){
+                include './Paginator/paginator.php';
+            }
+            ?>
+            <!-- <div class="row">
                 <div class="col-lg-12 d-flex justify-content-between align-items-center">
                     <div>
                         <h4 class="">Aproving list</h4>
@@ -159,7 +169,8 @@ $results_drug_approval = $db_drug->fetch_drug_approval();
                     ?>
                     </tbody>
                 </table>
-            </div>
+            </div> -->
+            
         </main>
     </div>
 </div>

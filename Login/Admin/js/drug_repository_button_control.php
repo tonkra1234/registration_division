@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     $('.delete_button').click(function (e) {
         e.preventDefault();
         var drugId = $(this).val();
@@ -33,7 +33,7 @@
         })
 
     });
-</script>
+</script> -->
 <script>
     $('.retrieve_button').click(function (e) {
         e.preventDefault();
@@ -70,7 +70,7 @@
 
     });
 </script>
-<script>
+<!-- <script>
     $('.approval_button').click(function (e) {
         e.preventDefault();
         var drugId = $(this).val();
@@ -181,4 +181,4 @@
         })
 
     });
-</script>
+</script> -->

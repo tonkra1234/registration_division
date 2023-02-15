@@ -2,7 +2,7 @@
 
 include '../../include/connection.php';
 
-$sql = "INSERT INTO pre_approval (Essential, Schedule, Registration_Type, Application_Type, 
+$sql = "INSERT INTO drug_record (Essential, Schedule, Registration_Type, Application_Type, 
 Market_Authorisation_Holder, Category_of_Medical_Product, Intention, Generic_Name, Brand_Name, 
 Dosage_Form, Pack_Size,Type_of_Packaging,Composition, Manufacturer, Marketer, Country_of_Manufacturer, 
 Therapeutic_Category, Certificate_Number, Issue_Date, Expiry_Date, Price_per_unit)

@@ -29,16 +29,47 @@ class Drug extends ConfigDrug {
 
         return $results;
     }
+    public function paginator(){
 
-    public function fetch_drug_trash(){
+        // variable to store number of rows per page
+        $total_records_per_page = 15;   
 
-        $sql= "SELECT * FROM `trash` ";
+        // update the active page number
+        if (isset($_GET['page_no']) && $_GET['page_no']!="") {
+            $page_no = $_GET['page_no'];
+        } else {
+            $page_no = 1;
+        }
+
+        // get the initial page number
+        $offset = ($page_no-1) * $total_records_per_page;
+
+        $sql_count ="SELECT COUNT(*) As total_records FROM `trash`";
+        $stmt = $this->conn->prepare($sql_count);
+        $stmt->execute();
+        $result_count= $stmt->fetch();
+
+        $total_records = $result_count['total_records'];
+        $total_no_of_pages = ceil($total_records / $total_records_per_page);
+        return [$offset, $total_records_per_page,$total_records,$page_no,$total_no_of_pages];
+    }
+
+    public function fetch_drug_trash() {
+        
+        $paginators=$this->paginator();
+        $offset = $paginators[0];
+        $total_records_per_page = $paginators[1];
+        $total_records = $paginators[2];
+        $page_no = $paginators[3];
+        $total_no_of_pages = $paginators[4];
+
+        $sql ="SELECT * FROM `trash` ORDER BY `Number` DESC LIMIT $offset, $total_records_per_page ";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
-        $results =  $stmt->fetchAll();
-
-        return $results;
+        $result= $stmt->fetchAll();
+        return [$result, $page_no,$total_no_of_pages,$total_records];
     }
+
 
     public function count_drug_trash(){
 

@@ -15,7 +15,7 @@ class DataBase extends Config {
     }
 
     public function insert($Name_Manufacturer, $Proprietor,$Key_person, $Category, $Email, $Dzongkhag, $Location, $image_link) {
-        $sql = "INSERT INTO pre_approval (Name_Manufacturer,Proprietor,Key_person,Category,Location,Email,Dzongkhag,image_link) 
+        $sql = "INSERT INTO manufacturer_list (Name_Manufacturer,Proprietor,Key_person,Category,Location,Email,Dzongkhag,image_link) 
         VALUES(:Name_Manufacturer,:Proprietor,:Key_person,:Category,:Location,:Email,:Dzongkhag,:image_link)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
