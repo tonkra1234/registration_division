@@ -59,6 +59,11 @@ $issue = date_format($date_issue,"j-M-Y");
             color: black;
             text-align: right;
         }
+        .signature{
+            position:absolute;
+            left:610px;
+            top:1050px;
+        }
         
     </style>
 </head>
@@ -116,7 +121,7 @@ $issue = date_format($date_issue,"j-M-Y");
             medicinal products from the market.</p>
         <h5 style="margin-bottom:0px ;font-family: bookantiquebold;">Registration Date: <span><?php echo $issue;?></span></h5>
         <h5 style="font-family: bookantiquebold;">Printed Date : <span><?php echo $today;?></span></h5>
-        <div class="footer" style="padding-right: 40px;margin-top:45px;font-family: bookantiquebold;">
+        <div class="signature" >
             <h5>Drug controller</h5>
         </div>
     

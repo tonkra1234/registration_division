@@ -254,8 +254,8 @@ if (isset($_GET['page_no']) && $_GET['page_no']!="") {
                         <th scope="col">Firm name</th>
                         <th scope="col">Dzongkhag</th>
                         <th scope="col">Cp type</th>
-                        <th scope="col">Certificate valid</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Certificate valid</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
